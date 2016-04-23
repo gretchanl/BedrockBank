@@ -11,30 +11,41 @@ namespace BedrockBank
         static void Main(string[] args)
         {
             Console.WriteLine("*****Welcome to the Bedrock Bank * *****");
-            Console.WriteLine("1. Create an account");
-            Console.WriteLine("2. Deposit into an account");
-            Console.WriteLine("0. Exit");
-            var option =  Console.ReadLine();
-            switch (option)
+            string option;
+            do
             {
-                case "1":
-                    Console.Write("What is the name of the account");
-                    var accountName = Console.ReadLine();
-                    var account1 = Bank.CreateAccount(accountName, 12345, AccountType.Checking);
-                    Console.WriteLine("Account Name: {0}, Account Number: {1}, Type of Account: {2}, Balance: {3:c}",
-                account1.AccountName, account1.AccountNumber, account1.TypeofAccount, account1.Balance);
-                    break;
-                case "2":
-                    break;
-                case "0":
-                   Console.WriteLine("Goodbye");
-                    return;
-                    
-                default:
-                    break;
 
-                
-            }
+
+                Console.WriteLine("1. Create an account");
+                Console.WriteLine("2. Deposit into an account");
+                Console.WriteLine("3. Print accounts");
+                Console.WriteLine("0. Exit");
+                option = Console.ReadLine();
+                switch (option)
+                {
+                    case "1":
+                        Console.Write("What is the name of the account");
+                        var accountName = Console.ReadLine();
+                        var account1 = Bank.CreateAccount(accountName, 12345, AccountType.Checking);
+                        Console.WriteLine("Account Name: {0}, Account Number: {1}, Type of Account: {2}, Balance: {3:c}",
+                    account1.AccountName, account1.AccountNumber, account1.TypeofAccount, account1.Balance);
+                        break;
+                    case "2":
+                        break;
+
+                    case "3":
+                        PrintAccounts();
+                        break;
+                    case "0":
+                        Console.WriteLine("Goodbye");
+                        return;
+
+                    default:
+                        break;
+                }
+                } while (option !="0") ;
+
+            
 
             // creating an instance of Account this is where memory is allocated
             //var account1 = new Account(); // goes to your account.cs 
@@ -61,11 +72,25 @@ namespace BedrockBank
             // but you can call the deposit method to update the balance: and when you type it should populate with the method box icon
             //whenever you reference a method you must have () and pass in the parameters.
             //account1.Deposit(300.00);  // this method accepts an amount but to save the new balance, create a variable:
-            var account2 = Bank.CreateAccount("My Savings", 987654, AccountType.Savings);
-            account2.Deposit(100.00);
-            Console.WriteLine("Account Name: {0}, Account Number: {1}, Type of Account: {2}, Balance: {3:c}",
-                account2.AccountName, account2.AccountNumber, account2.TypeofAccount, account2.Balance);
+           // var account2 = Bank.CreateAccount("My Savings", 987654, AccountType.Savings);
+           // account2.Deposit(100.00);
+           // Console.WriteLine("Account Name: {0}, Account Number: {1}, Type of Account: {2}, Balance: {3:c}",
+            //    account2.AccountName, account2.AccountNumber, account2.TypeofAccount, account2.Balance);
 
+
+        }
+
+        static void PrintAccounts()
+        {
+            foreach (var account in Bank.accounts)
+            {
+                Console.WriteLine("Id: {0}, Name: {1}",
+                    account.AccountNumber, account.AccountName);
+            }
+
+            {
+
+            }
 
         }
     }

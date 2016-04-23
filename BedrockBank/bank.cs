@@ -8,6 +8,14 @@ namespace BedrockBank
 {
     public static class Bank
     {
+        #region Variable
+        public static List<Account> accounts = new List<Account>();// when you execute, it will allocate memory 
+            // list to create a collection needs to be private so only the bank can see it // list of what: strings, int
+            // must be static 
+            // left side is a declaration just like  int= 10
+            //reference types (list, string - is special and doesn't need new), array..)  must always use new so it will allocate memory
+        #endregion
+
         /// <summary>
         /// Create a new account
         /// </summary>
@@ -19,10 +27,13 @@ namespace BedrockBank
 
         {
             var account = new Account { AccountName = accountName, SSN = ssn, TypeofAccount = typeOfAccount };
+
+            accounts.Add(account); // this method puts the account into the collection list
             return account;
 
-        }
+        } // end of the method
 
+        
 
     }
 }
