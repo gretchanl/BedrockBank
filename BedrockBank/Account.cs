@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +24,27 @@ namespace BedrockBank
     {
         #region Variables
         private static int lastAccountNumber = 0; //if key word static it is a shared memory for all instance to use
-        
+
         #endregion
 
         #region properties
         /// <summary>
         /// comment for AccountNumber
         /// </summary>
+        [Key]
         public int AccountNumber { get; private set; } //
-        /// <summary>
-        /// comment for AccountName
-        /// </summary>
+                                                       /// <summary>
+                                                       /// comment for AccountName
+                                                       /// </summary>
+        [StringLength(10,ErrorMessage = "Account Name must be 10 charactors or less.")]
         public string AccountName { get; set; }
         public int SSN { get; set; }
         public double Balance { get; private set; } //take out set and change to private set - users cannot set from outside
+
         public AccountType TypeofAccount { get; set; }  //** ties to the Enum
+
+        public virtual Customer Customer { get; set; } // ** make so you don't have to make a custID how you build relationship
+
         #endregion
 
         #region Constructor // constructors must be public and have no return type

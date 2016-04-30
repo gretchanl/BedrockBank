@@ -14,8 +14,7 @@ namespace BedrockBank
             string option;
             do
             {
-
-
+                
                 Console.WriteLine("1. Create an account");
                 Console.WriteLine("2. Deposit into an account");
                 Console.WriteLine("3. Print accounts");
@@ -26,7 +25,13 @@ namespace BedrockBank
                     case "1":
                         Console.Write("What is the name of the account");
                         var accountName = Console.ReadLine();
-                        var account1 = Bank.CreateAccount(accountName, 12345, AccountType.Checking);
+                        Console.Write("What is your email address? ");
+                        var emailAddress = Console.ReadLine();
+                        var customer = Bank.FindCustomer(emailAddress);                     
+                        Bank.FindCustomer(emailAddress);
+
+                        var account1 = Bank.CreateAccount(accountName, 12345,
+                            AccountType.Checking, customer);
                         Console.WriteLine("Account Name: {0}, Account Number: {1}, Type of Account: {2}, Balance: {3:c}",
                     account1.AccountName, account1.AccountNumber, account1.TypeofAccount, account1.Balance);
                         break;
@@ -34,7 +39,7 @@ namespace BedrockBank
                         break;
 
                     case "3":
-                        PrintAccounts();
+                       // PrintAccounts();
                         break;
                     case "0":
                         Console.WriteLine("Goodbye");
@@ -80,18 +85,18 @@ namespace BedrockBank
 
         }
 
-        static void PrintAccounts()
-        {
-            foreach (var account in Bank.accounts)
-            {
-                Console.WriteLine("Id: {0}, Name: {1}",
-                    account.AccountNumber, account.AccountName);
-            }
+        //static void PrintAccounts()
+        //{
+        //    foreach (var account in Bank.accounts)
+        //    {
+        //        Console.WriteLine("Id: {0}, Name: {1}",
+        //            account.AccountNumber, account.AccountName);
+        //    }
 
-            {
+        //    {
 
             }
 
         }
-    }
-}
+    //}
+//}
