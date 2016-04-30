@@ -40,9 +40,7 @@ namespace BedrockBank
         public string AccountName { get; set; }
         public int SSN { get; set; }
         public double Balance { get; private set; } //take out set and change to private set - users cannot set from outside
-
         public AccountType TypeofAccount { get; set; }  //** ties to the Enum
-
         public virtual Customer Customer { get; set; } // ** make so you don't have to make a custID how you build relationship
 
         #endregion

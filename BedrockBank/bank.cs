@@ -20,8 +20,7 @@ namespace BedrockBank
         public static Customer FindCustomer(string emailAddress)
         {
             return db.Customers.Where(
-                c => c.CustomerEmail == emailAddress)
-                .FirstOrDefault();
+            c => c.CustomerEmail == emailAddress).FirstOrDefault();
         }
 
 
@@ -33,10 +32,19 @@ namespace BedrockBank
         /// <param name="ssn">Your social sec number </param>
         /// <param name="typeOfAccount">The type of account</param>
         /// <returns>A new account</returns>
-        public static Account CreateAccount(string accountName, int ssn, AccountType typeOfAccount, Customer customer)// the parameters are from the properties from the class
+        public static Account CreateAccount
+            (string accountName, 
+            int ssn, AccountType typeOfAccount,
+            Customer customer)    // the parameters are from the properties from the class
 
         {
-            var account = new Account { AccountName = accountName, SSN = ssn, TypeofAccount = typeOfAccount, Customer=customer};
+            var account = new Account
+            { AccountName = 
+                accountName,
+                SSN = ssn,
+                TypeofAccount = typeOfAccount,
+                Customer =customer
+            };
 
             db.Accounts.Add(account); // this method puts the account into the collection list
             db.SaveChanges();
